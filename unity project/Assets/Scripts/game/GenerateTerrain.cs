@@ -38,6 +38,14 @@ public class GenerateTerrain : MonoBehaviour
     [SerializeField]
     private int defHeightTop = 2;
 
+    private int points = 1;
+
+
+    private float minHeight = 0.6f;
+    private float maxHeight = 1.0f;
+
+    private float heightFactor = 3f;
+
     void Start()
     {
         frets = new Transform[numberOfFrets];
@@ -49,6 +57,7 @@ public class GenerateTerrain : MonoBehaviour
     }
 
     bool first = true;
+    float factor = 0;
     void Update()
     {
         if (currentStep > changePoint)
@@ -69,7 +78,19 @@ public class GenerateTerrain : MonoBehaviour
         {
             currentFret = addOne(currentFret, frets.Length);
             currentStep++;
-            Debug.Log(currentStep);
+            points++;
+        }
+
+        if(points % 100 == 0 && points < 1000)
+        {
+            Debug.Log("updated difficulty");
+            Debug.Log("points " + points);
+            minHeight = UnityEngine.Random.Range(-1 - factor, 1 + factor);
+            maxHeight = UnityEngine.Random.Range(-2 - factor, 2 + factor);
+
+            factor += UnityEngine.Random.Range(0.1f, 0.3f);
+            //heightFactor = UnityEngine.Random.Range(-2, 2);
+            //heightFactor = (maxHeight - minHeight) / 100;
         }
     }
 
@@ -109,11 +130,11 @@ public class GenerateTerrain : MonoBehaviour
             frets[counter] = current;
             fretsTop[counter] = currentTop;
 
-            SetHeight(current, defHeight);
+            SetHeight(current, defHeight - heightFactor);
 
 
             // update top
-            fretsTop[counter].position = new Vector3(fretsTop[counter].position.x, frets[counter].position.y + defHeightTop, 0);
+            fretsTop[counter].position = new Vector3(fretsTop[counter].position.x, frets[counter].position.y + defHeightTop + heightFactor, 0);
         }
     }
 
@@ -135,10 +156,10 @@ public class GenerateTerrain : MonoBehaviour
 
             Transform current = frets[counter];
 
-            SetHeight(current, defHeight);
+            SetHeight(current, defHeight - heightFactor);
             
             // update top
-            fretsTop[counter].position = new Vector3(fretsTop[counter].position.x, current.position.y + defHeightTop, 0);
+            fretsTop[counter].position = new Vector3(fretsTop[counter].position.x, current.position.y + defHeightTop + heightFactor, 0);
         }
 
     }
@@ -146,7 +167,7 @@ public class GenerateTerrain : MonoBehaviour
     private void SetHeight(Transform t, float defHeight)
     {
         degrees = addOne(degrees, 360);
-        float y = defHeight + Mathf.Sin(degrees) * UnityEngine.Random.Range(0.2f, 2.0f);
+        float y = defHeight + Mathf.Sin(degrees) * UnityEngine.Random.Range(minHeight, maxHeight);
         t.transform.position = new Vector3(t.transform.position.x, y, 0);
     }
 }
