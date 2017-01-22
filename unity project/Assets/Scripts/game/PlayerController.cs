@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject animObj;
+    public GameObject animObj;
     public float speed;
     [SerializeField]
     private int health = 100;
@@ -42,6 +41,9 @@ public class PlayerController : MonoBehaviour
             health += healthRegenAmount;
             hpText.text = "Health " + health;
         }
+
+//        if (Input.GetKeyDown(KeyCode.Space))
+//           PhysicsController();
 
     }
 
@@ -85,5 +87,12 @@ public class PlayerController : MonoBehaviour
     {
         if(health <= 0)
             SceneManager.LoadScene("demo", LoadSceneMode.Single);
+    }
+
+    private void PhysicsController()
+    {
+        Rigidbody2D rg = this.GetComponent<Rigidbody2D>();
+        rg.AddForce(new Vector2(0, 1) * 5);
+        rg.velocity = new Vector2(1, 0);
     }
 }
