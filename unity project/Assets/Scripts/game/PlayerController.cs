@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject animObj;
+    public GameObject animObj;
     public float speed;
     [SerializeField]
     private int health = 100;

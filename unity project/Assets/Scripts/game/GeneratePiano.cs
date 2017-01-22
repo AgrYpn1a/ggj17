@@ -43,6 +43,9 @@ public class GeneratePiano : MonoBehaviour
 
     private bool firstUpdate = true;
 
+    [SerializeField]
+    private Sprite[] sprites;
+
     void Start()
     {
         random = Random.Range(0, 34.45f);
@@ -117,7 +120,7 @@ public class GeneratePiano : MonoBehaviour
     void UpdatePianoRow(float startX, int numOfTips = 16)
     {
         float scaleDownFactor = 1;
-        if(firstUpdate)
+        if (firstUpdate)
         {
             firstUpdate = false;
             scaleDownFactor = 6;
@@ -172,23 +175,37 @@ public class GeneratePiano : MonoBehaviour
         {
             lvlText.text = "Level " + 2;
             gain2 = 30;
+            playerController.animObj.GetComponent<SpriteRenderer>().sprite = sprites[0];
         }
         if (sc > 60)
         {
             lvlText.text = "Level " + 3;
             playerController.speed = 0.3f;
+            playerController.animObj.GetComponent<SpriteRenderer>().sprite = sprites[1];
+
         }
         if (sc > 90)
         {
             lvlText.text = "Level " + 4;
             playerController.speed = 0.35f;
             //gain2 = 50;
+            playerController.animObj.GetComponent<SpriteRenderer>().sprite = sprites[2];
+
         }
-        if(sc > 120)
+        if (sc > 120)
         {
             lvlText.text = "Level " + 5;
             playerController.speed = 0.38f;
             //gain2 = 60;
+            playerController.animObj.GetComponent<SpriteRenderer>().sprite = sprites[3];
+        }
+
+        if (sc > 200)
+        {
+            lvlText.text = "Level " + 6;
+            gain2 = 36;
+            playerController.animObj.GetComponent<SpriteRenderer>().sprite = sprites[4];
+
         }
     }
 }
