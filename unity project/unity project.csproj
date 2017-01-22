@@ -76,7 +76,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\game\GenerateTerrain.cs" />
+    <Compile Include="Assets\Scripts\game\KeyboardController.cs" />
     <Compile Include="Assets\Scripts\game\TerrainPart.cs" />
+    <Compile Include="Assets\Scripts\game_alternative\GeneratePiano.cs" />
     <Compile Include="Assets\Scripts\helpers\Node.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
