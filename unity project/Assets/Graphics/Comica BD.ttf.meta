@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 96fc41ac6ac89ed41be3af24dc24dfd3
+timeCreated: 1485083878
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Comica BD
+  fontNames:
+  - Comica BD
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
